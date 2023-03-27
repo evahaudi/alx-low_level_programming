@@ -50,3 +50,22 @@ void print_rev(char *s)
 
         _putchar('\n'); /* Print a newline character at the end */
 }
+void puts2(char *str)
+{
+        int longi = 0;
+        int o;
+
+        /* Get the length of the string */
+        while (str[longi] != '\0')
+        {
+                longi++;
+        }
+
+        /* Print every other character */
+        for (o = 0; o < longi; o += 2)
+        {
+                _putchar(str[o]);
+        }
+
+        _putchar('\n'); /* Print a newline character at the end */
+}
