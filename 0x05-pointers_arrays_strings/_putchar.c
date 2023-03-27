@@ -69,3 +69,7 @@ void puts2(char *str)
 
         _putchar('\n'); /* Print a newline character at the end */
 }
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
