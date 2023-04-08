@@ -7,6 +7,8 @@
 int _putchar(char c);
 		
 int _atoi(char *p);
+
+int check_num(char *str);
 		
 
 		
