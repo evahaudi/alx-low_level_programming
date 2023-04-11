@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 char *create_array(unsigned int size, char c);
-char *_strdup(char *str)
+char *_strdup(char *str);
 int _isalpha(int c);
 int _abs(int n);
 int _isupper(int c);
