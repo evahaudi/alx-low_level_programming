@@ -11,4 +11,3 @@ for (; h; h = h->next, nm++)
 printf("%d\n", h->n);
 return (nm);
 }
-
