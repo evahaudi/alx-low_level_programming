@@ -30,7 +30,6 @@ void free_listint2(listint_t **head);
 listint_t *reverse_listint(listint_t **head);
 size_t print_listint(const listint_t *h);
 size_t print_listint_safe(const listint_t *head);
-size_t lpd_listint_len(const listint_t *head);
 size_t listint_len(const listint_t *h);
 void free_listint(listint_t *head);
 #endif
