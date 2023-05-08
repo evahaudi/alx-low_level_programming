@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     if (file2 == -1)
         error("Error: Can't write to file2\n");
 
-    while ((byts_read = read(file1, buffer, BUFFER_SIZE)) > 0)
+    while ((byts_read = read(file1, buffer, MEMORY_SIZE)) > 0)
     {
         byts_written = write(file2, buffer, byts_read);
         if (byts_written != byts_read)
