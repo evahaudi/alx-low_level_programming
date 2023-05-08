@@ -1,59 +1,75 @@
+#include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 
-#define MEMORY_SIZE 1024
 
 /**
- * error - prints an error message to stderr and exits with a non-zero status.
- * @m: the error message to print.
+ * error_file - checks if files can be opened.
+ * @file_from: file_from.
+ * @file_to: file_to.
+ * @argv: arguments vector.
+ * Return: no return.
  */
-void error(char *m)
+
+void error_file(int file_from, int file_to, char *argv[])
 {
-    fprintf(stderr, "%s", m);
-    exit(1);
+	if (file_from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	if (file_to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
 }
 
 /**
- * main - copies the contents of one file to another file.
- * @argc: the number of arguments.
- * @argv: the arguments.
- *
- * Return: 0 on success.
+ * main - check the code for ALX School students.
+ * @argc: number of arguments.
+ * @argv: arguments vector.
+ * Return: Always 0.
  */
+
 int main(int argc, char *argv[])
 {
-    int file1, file2;
-    ssize_t byts_read, byts_written;
-    char buffer[MEMORY_SIZE];
+	int file_from, file_to, err_close;
+	ssize_t chars, wr;
+	char buf[1024];
 
-    if (argc != 3)
-        error("Usage: cp file1 file2\n");
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		exit(97);
+	}
 
-    file1 = open(argv[1], O_RDONLY);
-    if (file1 == -1)
-        error("Error: Can't read from file1\n");
+	file_from = open(argv[1], O_RDONLY);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+	error_file(file_from, file_to, argv);
 
-    file2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-    if (file2 == -1)
-        error("Error: Can't write to file2\n");
+	chars = 1024;
+	while (chars == 1024)
+	{
+		chars = read(file_from, buf, 1024);
+		if (chars == -1)
+			error_file(-1, 0, argv);
+		wr = write(file_to, buf, chars);
+		if (wr == -1)
+			error_file(0, -1, argv);
+	}
 
-    while ((byts_read = read(file1, buffer, MEMORY_SIZE)) > 0)
-    {
-        byts_written = write(file2, buffer, byts_read);
-        if (byts_written != byts_read)
-            error("Error: Can't write to file2\n");
-    }
+	err_close = close(file_from);
+	if (err_close == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
 
-    if (byts_read == -1)
-        error("Error: Can't read from file1\n");
-
-    if (close(file1) == -1)
-        error("Error: Can't close file1\n");
-
-    if (close(file2) == -1)
-        error("Error: Can't close file2\n");
-
-    return 0;
+	err_close = close(file_to);
+	if (err_close == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+	return (0);
 }
