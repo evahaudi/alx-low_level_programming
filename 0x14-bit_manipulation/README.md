@@ -1,0 +1,1 @@
+exapmle of bit manipulation in c programmig language
