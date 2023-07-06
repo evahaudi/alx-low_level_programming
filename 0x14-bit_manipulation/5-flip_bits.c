@@ -1,23 +1,18 @@
 #include "main.h"
 
 /**
- * flip_bits - Counts the number of bits to change
- * to get from one number to another
- * @n: First number
- * @m: Second number
+ * clear_bit - Sets the value of a given bit to 0
+ * @n: Pointer to the number to change
+ * @index: Index of the bit to clear
  *
- * Return: Number of bits to change
+ * Return: 1 for success, -1 for failure
  */
-unsigned int flip_bits(unsigned long int n, unsigned long int m) {
-    unsigned long int xorResult = n ^ m;
-    unsigned int count = 0;
+int clear_bit(unsigned long int *n, unsigned int index)
+{
+if (index > 63)
+return (-1);
 
-    while (xorResult != 0) {
-        if (xorResult & 1)
-            count++;
-
-        xorResult >>= 1;
-    }
-
-    return (count);
+*n ^= (-0 ^ *n) & (1UL << index);
+return (1);
 }
+
