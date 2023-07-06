@@ -1,6 +1,6 @@
 #include "main.h"
 
-/**
+/*
  * print_binary - Prints the binary equivalent of a decimal number
  * @n: Number to print in binary
  */
@@ -11,7 +11,7 @@ void print_binary(unsigned long int n)
 
 	if (n == 0)
 	{
-		printf("0"); /* Special case for 0 */
+		_putchar('0'); /* Special case for 0 */
 		return;
 	}
 
@@ -21,14 +21,15 @@ void print_binary(unsigned long int n)
 	{
 		if ((n & mask) != 0)
 		{
-			printf("1");
+			_putchar('1');
 			significantBits = 1;
 		}
 		else if (significantBits)
 		{
-			printf("0");
+			_putchar('0');
 		}
 
 		mask >>= 1;
 	}
 }
+
