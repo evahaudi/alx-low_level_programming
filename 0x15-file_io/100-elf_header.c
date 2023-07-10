@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdlib.h>
+
 /**
  * main - Displays the information contained in the
  *        ELF header at the start of an ELF file.
@@ -53,5 +53,4 @@ free(header);
 close_elf(o);
 return (0);
 }
-
 
