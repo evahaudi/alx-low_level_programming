@@ -1,4 +1,4 @@
-#include "main.h"
+#include "utils.h"
 
 /**
  * main - Displays the information contained in the
