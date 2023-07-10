@@ -58,7 +58,7 @@ printf("%02x", e_ident[index]);
 
 if (index == EI_NIDENT - 1)
 printf("\n");
-else	
+else
 printf(" ");
 }
 }
@@ -121,7 +121,7 @@ printf("  Version:                           %d",
 e_ident[EI_VERSION]);
 
 switch (e_ident[EI_VERSION])
-
+{
 case EV_CURRENT:
 printf(" (current)\n");
 break;

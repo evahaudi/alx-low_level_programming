@@ -15,7 +15,7 @@ ssize_t gf;
 ssize_t y;
 ssize_t h;
 
-if = open(filename, O_RDONLY);
+gf = open(filename, O_RDONLY);
 if (gf == -1)
 return (0);
 d = malloc(sizeof(char) * letters);
